@@ -1,0 +1,5 @@
+.idea/
+pythonProject/.idea/
+pythonProject/.venv/
+pythonProject/__pycache__/
+pythonProject/network_config.json
