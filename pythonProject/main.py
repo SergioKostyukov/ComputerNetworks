@@ -1,21 +1,15 @@
 import NetworkModel
-import TrafficAnalysis as ta
+import TrafficAnalysis as Analysis
 
 
-# 1 зміна алгоритму пошуку коротших шляхів
-# 1 вплив типу каналів на результат
-# 1 корегування результатів підрахунків відповідно до завдання
+# 1 система моделювання відправки повідомлення
 #
-# 2 занесення результатів вимірів у файли
-# 2 індексація робочих станцій при знаходженні найкоротшого шляху
+# 2 побудова графіків для аналізу
 #
-# 3 відображення коротшого шляху графічно
-# 3 побудова графіків для аналізу
+# 3 проблема з завантаженням з файлу
 #
-# 4 проблема з завантаженням з файлу
-#
-# 5 коментарі
-# 5 чистий код
+# 4 коментарі
+# 4 чистий код
 
 def get_user_choice(network):
     print("Enter channels type\n"
@@ -46,7 +40,7 @@ def get_user_choice(network):
         elif choice == '4':
             network.save_configuration()
         elif choice == '5':
-            ta.traffic_analysis(network)
+            Analysis.traffic_analysis(network)
         elif choice == '6':
             break
         else:
