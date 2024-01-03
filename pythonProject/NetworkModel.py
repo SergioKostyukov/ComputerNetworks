@@ -53,7 +53,8 @@ class DataTransmissionNetwork:
 
         data = {
             "network": nx.to_dict_of_dicts(self.network),
-            "workstations": self.workstations
+            "workstations": self.workstations,
+            "node_count": self.node_count
         }
         with open(filename, "w") as file:
             json.dump(data, file)
@@ -89,8 +90,9 @@ class DataTransmissionNetwork:
     def load_configuration(self, filename="./project_data/network_config.json"):
         with open(filename, "r") as file:
             data = json.load(file)
-            self.network = nx.DiGraph(data["network"])
+            self.network = nx.Graph(data["network"])
             self.workstations = data["workstations"]
+            self.node_count = data.get("node_count", 24)
 
     def visualize_network(self):
         pos = nx.spring_layout(self.network, k=1.5)

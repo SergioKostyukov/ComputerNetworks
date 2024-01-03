@@ -1,37 +1,38 @@
 import NetworkModel
 import TrafficAnalysis as Analysis
+import Plot
 
 
 # 1 система моделювання відправки повідомлення
 #
-# 2 побудова графіків для аналізу
+# 1 побудова графіків для аналізу
 #
-# 3 проблема з завантаженням з файлу
+# 2 проблема з завантаженням з файлу
 #
-# 4 коментарі
-# 4 чистий код
+# 3 коментарі
+# 3 чистий код
 
 def get_user_choice(network):
-    print("Enter channels type\n"
-          "1. FULL-DUPLEX\n"
-          "2. HALF-DUPLEX")
-    choice = input("Enter your choice: ")
-    if choice == 1:
-        channelstype = "FULL-DUPLEX"
-    else:
-        channelstype = "HALF-DUPLEX"
-
     while True:
-        print("\n"
-              "1. Generate new random graph\n"
+        print("1. Generate new random graph\n"
               "2. Load graph from file\n"
               "3. Show network\n"
               "4. Save graph to file\n"
               "5. Traffic analysis\n"
-              "6. Exit")
+              "6. Show graphics\n"
+              "7. Exit")
         choice = input("Enter option number: ")
 
         if choice == '1':
+            print("\nEnter channels type\n"
+                  "1. FULL-DUPLEX\n"
+                  "2. HALF-DUPLEX")
+            choice = input("Enter your choice: ")
+            if choice == 1:
+                channelstype = "FULL-DUPLEX"
+            else:
+                channelstype = "HALF-DUPLEX"
+
             network.generate_network(channelstype)
         elif choice == '2':
             network.load_configuration()
@@ -42,6 +43,8 @@ def get_user_choice(network):
         elif choice == '5':
             Analysis.traffic_analysis(network)
         elif choice == '6':
+            Plot.show_graphics()
+        elif choice == '7':
             break
         else:
             print("Error input. Try again.")
