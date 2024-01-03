@@ -1,4 +1,4 @@
-def dijkstra_shortest_path(graph, start, end):
+def dijkstra_algorithm(graph, start, end):
     # Ініціалізація відстаней та попередників
     distances = {node: float('infinity') for node in graph.nodes}
     predecessors = {node: None for node in graph.nodes}

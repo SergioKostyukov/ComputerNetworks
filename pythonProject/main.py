@@ -1,12 +1,26 @@
 import NetworkModel
-import TrafficAnalysis
+import TrafficAnalysis as ta
 
 
-def get_user_choice(data):
-    # вибір типу каналів
+# 1 зміна алгоритму пошуку коротших шляхів
+# 1 вплив типу каналів на результат
+# 1 корегування результатів підрахунків відповідно до завдання
+#
+# 2 занесення результатів вимірів у файли
+# 2 індексація робочих станцій при знаходженні найкоротшого шляху
+#
+# 3 відображення коротшого шляху графічно
+# 3 побудова графіків для аналізу
+#
+# 4 проблема з завантаженням з файлу
+#
+# 5 коментарі
+# 5 чистий код
+
+def get_user_choice(network):
     print("Enter channels type\n"
-          "1. Full-Duplex\n"
-          "2. Half-Duplex")
+          "1. FULL-DUPLEX\n"
+          "2. HALF-DUPLEX")
     choice = input("Enter your choice: ")
     if choice == 1:
         channelstype = "FULL-DUPLEX"
@@ -24,39 +38,22 @@ def get_user_choice(data):
         choice = input("Enter option number: ")
 
         if choice == '1':
-            data.generate_network(channelstype)
+            network.generate_network(channelstype)
         elif choice == '2':
-            data.load_configuration("network_config.json")
+            network.load_configuration()
         elif choice == '3':
-            data.visualize_network()
+            network.visualize_network()
         elif choice == '4':
-            data.save_configuration("network_config.json")
+            network.save_configuration()
         elif choice == '5':
-            #start_vertex = int(input("Введіть початкову вершину: "))
-            #end_vertex = int(input("Введіть кінцеву вершину: "))
-            #paths = data.find_shortest_paths()
-
-            data.transit_paths = data.find_shortest_paths_with_transits();
-            data.display_distance_tables();
-
-            # # Пошук найкоротшого шляху
-            # shortest_path, path_length = dijkstra_shortest_path(user_graph, start_vertex, end_vertex)
-            #
-            # # Вивід шляху в консоль
-            # print(f"Найкоротший шлях від вершини {start_vertex} до вершини {end_vertex}: {shortest_path}")
-            # print(f"Час подолання шляху: {path_length:.2f} годин")
-            #
-            # # Візуалізація найкоротшого шляху червоним кольором
-            # edges = [(shortest_path[i], shortest_path[i + 1]) for i in range(len(shortest_path) - 1)]
-            # nx.draw_networkx_edges(user_graph, pos_user_graph, edgelist=edges, edge_color='red', width=2)
+            ta.traffic_analysis(network)
         elif choice == '6':
             break
         else:
-            print("Неправильний вибір. Спробуйте ще раз.")
+            print("Error input. Try again.")
 
 
 def main():
-    # Отримання графа з вибором користувача
     network = NetworkModel.DataTransmissionNetwork()
     get_user_choice(network)
 
