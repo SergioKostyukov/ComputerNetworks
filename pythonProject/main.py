@@ -1,16 +1,7 @@
 import NetworkModel
 import TrafficAnalysis as Analysis
-import Plot
+import Graphs
 
-
-# 1 система моделювання відправки повідомлення
-#
-# 1 побудова графіків для аналізу
-#
-# 2 проблема з завантаженням з файлу
-#
-# 3 коментарі
-# 3 чистий код
 
 def get_user_choice(network):
     while True:
@@ -19,7 +10,7 @@ def get_user_choice(network):
               "3. Show network\n"
               "4. Save graph to file\n"
               "5. Traffic analysis\n"
-              "6. Show graphics\n"
+              "6. Show graphs\n"
               "7. Exit")
         choice = input("Enter option number: ")
 
@@ -43,7 +34,7 @@ def get_user_choice(network):
         elif choice == '5':
             Analysis.traffic_analysis(network)
         elif choice == '6':
-            Plot.show_graphics()
+            Graphs.show_graphics()
         elif choice == '7':
             break
         else:
