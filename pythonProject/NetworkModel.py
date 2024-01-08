@@ -99,10 +99,12 @@ class DataTransmissionNetwork:
 
         # Візуалізація вузлів та робочих станцій
         nx.draw_networkx_nodes(self.network, pos,
-                               nodelist=[node for node in self.network.nodes() if int(node) < 24],
+                               nodelist=[node for node in self.network.nodes() if
+                                         int(node) < self.node_count - len(self.workstations)],
                                node_color='blue', node_shape='o')
         nx.draw_networkx_nodes(self.network, pos,
-                               nodelist=[node for node in self.network.nodes() if int(node) >= 24],
+                               nodelist=[node for node in self.network.nodes() if
+                                         int(node) >= self.node_count - len(self.workstations)],
                                node_color='red', node_shape='^')
         # Візуалізація ребер
         nx.draw_networkx_edges(self.network, pos, edge_color='black')

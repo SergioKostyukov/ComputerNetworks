@@ -46,14 +46,14 @@ def transmit_message_datagram(duplex_mode, network, source, destination, message
 
     # Параметри передачі
     transmission_type = "Datagram"
-    overhead_size = info_packets_count * 8
+    overhead_size = info_packets_count * 8 # * 4
 
     # Метрики трафіку
     information_traffic = info_packets_count * message_size * 32
-    control_traffic = overhead_size * len(path)
+    control_traffic = overhead_size * total_weight
 
     # Час доставки
-    delivery_time = (message_size + overhead_size)
+    delivery_time = (message_size + overhead_size) / 2
     if duplex_mode == "HALF-DUPLEX":
         delivery_time /= 2
 
